@@ -17,10 +17,10 @@ public class Tennis extends SportsFacility{
 
 	
 
-	public Tennis(String location, boolean isIndoor, int capacity, String openingHour, String closingHour,
+	public Tennis(String surfaceType, double netHeight, boolean isDoublesCourt, boolean racketAvailability ,String location, boolean isIndoor, int capacity, String openingHour, String closingHour,
 			boolean isAvailable, ArrayList<String> bookedBy, boolean lightingAvailability, int facilityId,
-			ArrayList<String> studentsInside, ArrayList<Course> courses, TreeSet<String> reservationsSet,
-			String surfaceType, double netHeight, boolean isDoublesCourt, boolean racketAvailability) {
+			ArrayList<String> studentsInside, ArrayList<Course> courses, TreeSet<String> reservationsSet
+			) {
 		super(location, isIndoor, capacity, openingHour, closingHour, isAvailable, bookedBy, lightingAvailability,
 				facilityId, studentsInside, courses, reservationsSet);
 		this.surfaceType = surfaceType;

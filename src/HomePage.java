@@ -44,6 +44,7 @@ public class HomePage extends JFrame {
 				try {
 					HomePage frame = new HomePage();
 					frame.setVisible(true);
+					SportsFacilitySys.init();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -111,134 +112,122 @@ public class HomePage extends JFrame {
 		backgroundPhoto.setBounds(0, 98, 1191, 436);
 		contentPane.add(backgroundPhoto);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(49, 546, 219, 210);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		JPanel footballPnl = new JPanel();
+		footballPnl.setBounds(49, 570, 219, 172);
+		contentPane.add(footballPnl);
+		footballPnl.setLayout(null);
 		
 		JLabel footballIcon = new JLabel("");
 		footballIcon.setBounds(6, 6, 35, 35);
 		footballIcon.setIcon(footballImg);
-		panel.add(footballIcon);
+		footballPnl.add(footballIcon);
 		
 		
 		JLabel footballLbl = new JLabel("Football");
 		footballLbl.setForeground(new Color(60, 107, 37));
 		footballLbl.setFont(new Font("Lucida Grande", Font.BOLD, 18));
 		footballLbl.setBounds(74, 6, 76, 35);
-		panel.add(footballLbl);
+		footballPnl.add(footballLbl);
 		
 		JLabel footballFacCount = new JLabel("There are XX football courts.");
 		footballFacCount.setBounds(6, 63, 195, 16);
-		panel.add(footballFacCount);
+		footballPnl.add(footballFacCount);
 		
 		JButton FootballMainBtn = new JButton("Football Page");
 		FootballMainBtn.setBounds(0, 91, 213, 29);
-		panel.add(FootballMainBtn);
-		
-		JButton footballResBtn = new JButton("Make Reservation");
-		footballResBtn.setBounds(0, 132, 213, 29);
-		panel.add(footballResBtn);
+		footballPnl.add(FootballMainBtn);
 		
 		JButton footballAdd = new JButton("Add Facility");
-		footballAdd.setBounds(0, 173, 213, 29);
-		panel.add(footballAdd);
+		footballAdd.setBounds(0, 132, 213, 29);
+		footballPnl.add(footballAdd);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setBounds(339, 546, 219, 210);
-		contentPane.add(panel_1);
+		JPanel basketballPnl = new JPanel();
+		basketballPnl.setLayout(null);
+		basketballPnl.setBounds(338, 570, 219, 172);
+		contentPane.add(basketballPnl);
 		
 		JLabel basketballIcon = new JLabel("");
 		basketballIcon.setIcon(basketballImg);
 		basketballIcon.setBounds(6, 6, 35, 35);
-		panel_1.add(basketballIcon);
+		basketballPnl.add(basketballIcon);
 		
 		JLabel basketballLbl = new JLabel("Basketball");
 		basketballLbl.setForeground(new Color(237, 155, 56));
 		basketballLbl.setFont(new Font("Lucida Grande", Font.BOLD, 18));
 		basketballLbl.setBounds(65, 6, 106, 35);
-		panel_1.add(basketballLbl);
+		basketballPnl.add(basketballLbl);
 		
 		JLabel basketballFacCount = new JLabel("There are XX basketball courts.");
 		basketballFacCount.setBounds(6, 63, 195, 16);
-		panel_1.add(basketballFacCount);
+		basketballPnl.add(basketballFacCount);
 		
 		JButton BasketballMainBtn = new JButton("Basketball Page");
 		BasketballMainBtn.setBounds(0, 91, 213, 29);
-		panel_1.add(BasketballMainBtn);
-		
-		JButton basketballResBtn = new JButton("Make Reservation");
-		basketballResBtn.setBounds(0, 132, 213, 29);
-		panel_1.add(basketballResBtn);
+		basketballPnl.add(BasketballMainBtn);
 		
 		JButton basketballAdd = new JButton("Add Facility");
-		basketballAdd.setBounds(0, 173, 213, 29);
-		panel_1.add(basketballAdd);
+		basketballAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		basketballAdd.setBounds(0, 132, 213, 29);
+		basketballPnl.add(basketballAdd);
 		
-		JPanel panel_1_1 = new JPanel();
-		panel_1_1.setLayout(null);
-		panel_1_1.setBounds(630, 546, 219, 210);
-		contentPane.add(panel_1_1);
+		JPanel tennisPnl = new JPanel();
+		tennisPnl.setLayout(null);
+		tennisPnl.setBounds(630, 570, 219, 172);
+		contentPane.add(tennisPnl);
 		
 		JLabel tennisIcon = new JLabel("");
 		tennisIcon.setIcon(tennisImg);
 		tennisIcon.setBounds(6, 6, 35, 35);
-		panel_1_1.add(tennisIcon);
+		tennisPnl.add(tennisIcon);
 		
 		JLabel tennisLbl = new JLabel("Tennis");
 		tennisLbl.setForeground(new Color(224, 208, 70));
 		tennisLbl.setFont(new Font("Lucida Grande", Font.BOLD, 18));
 		tennisLbl.setBounds(83, 6, 76, 35);
-		panel_1_1.add(tennisLbl);
+		tennisPnl.add(tennisLbl);
 		
 		JLabel tennislFacCount = new JLabel("There are XX tennis courts.");
 		tennislFacCount.setBounds(6, 63, 195, 16);
-		panel_1_1.add(tennislFacCount);
+		tennisPnl.add(tennislFacCount);
 		
 		JButton tennisMainBtn = new JButton("Tennis Page");
 		tennisMainBtn.setBounds(0, 91, 213, 29);
-		panel_1_1.add(tennisMainBtn);
-		
-		JButton tennisResBtn = new JButton("Make Reservation");
-		tennisResBtn.setBounds(0, 132, 213, 29);
-		panel_1_1.add(tennisResBtn);
+		tennisPnl.add(tennisMainBtn);
 		
 		JButton tennisAdd = new JButton("Add Facility");
-		tennisAdd.setBounds(0, 173, 213, 29);
-		panel_1_1.add(tennisAdd);
+		tennisAdd.setBounds(0, 132, 213, 29);
+		tennisPnl.add(tennisAdd);
 		
-		JPanel panel_1_1_1 = new JPanel();
-		panel_1_1_1.setLayout(null);
-		panel_1_1_1.setBounds(925, 546, 219, 210);
-		contentPane.add(panel_1_1_1);
+		JPanel squashPnl = new JPanel();
+		squashPnl.setLayout(null);
+		squashPnl.setBounds(925, 570, 219, 172);
+		contentPane.add(squashPnl);
 		
 		JLabel squashIcon = new JLabel("");
 		squashIcon.setIcon(squashImg);
 		squashIcon.setBounds(6, 6, 35, 35);
-		panel_1_1_1.add(squashIcon);
+		squashPnl.add(squashIcon);
 		
 		JLabel squashLbl = new JLabel("Squash");
 		squashLbl.setForeground(new Color(98, 211, 226));
 		squashLbl.setFont(new Font("Lucida Grande", Font.BOLD, 18));
 		squashLbl.setBounds(85, 6, 76, 35);
-		panel_1_1_1.add(squashLbl);
+		squashPnl.add(squashLbl);
 		
 		JLabel squashFacCount = new JLabel("There are XX squash courts.");
 		squashFacCount.setBounds(6, 63, 195, 16);
-		panel_1_1_1.add(squashFacCount);
+		squashPnl.add(squashFacCount);
 		
 		JButton squashMainBtn = new JButton("Squash Page");
 		squashMainBtn.setBounds(0, 91, 213, 29);
-		panel_1_1_1.add(squashMainBtn);
-		
-		JButton squashResBtn = new JButton("Make Reservation");
-		squashResBtn.setBounds(0, 132, 213, 29);
-		panel_1_1_1.add(squashResBtn);
+		squashPnl.add(squashMainBtn);
 		
 		JButton squashAdd = new JButton("Add Facility");
-		squashAdd.setBounds(0, 173, 213, 29);
-		panel_1_1_1.add(squashAdd);
+		squashAdd.setBounds(0, 133, 213, 29);
+		squashPnl.add(squashAdd);
 		
 
 		

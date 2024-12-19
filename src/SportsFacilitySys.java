@@ -1,8 +1,30 @@
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class SportsFacilitySys {
 	private static ArrayList<SportsFacility> sportsFacilities = new ArrayList<>();
+	
+	public static void init() {
+		Tennis[] t = new Tennis[5];
+		ArrayList<String> booked = new ArrayList<>();
+		ArrayList<String> inside = new ArrayList<>();
+		TreeSet<String> rs = new TreeSet<>();
+		ArrayList<Course> courses = new ArrayList<>();
+		boolean randBool = true;
 
+		t[0] = new Tennis("Hard", 91.4 , randBool, randBool, "East Campus", !randBool, 2, "10","17",!randBool,booked,randBool,975,inside,courses,rs);
+		t[1] = new Tennis("Grass", 90.4 , randBool, !randBool, "Main Campus", randBool, 2, "12","23",!randBool,booked,!randBool,342,inside,courses,rs);
+		t[2] = new Tennis("Clay", 91.7 , randBool, randBool, "Main Campus", randBool, 2, "10","19",!randBool,booked,randBool,421,inside,courses,rs);
+		t[3] = new Tennis("Grass", 101.4, randBool, !randBool, "Main Campus", !randBool, 2, "11","14",!randBool,booked,!randBool,134,inside,courses,rs);
+		t[4] = new Tennis("Hard", 87.4 , randBool, !randBool, "East Campus", !randBool, 2, "10","19",!randBool,booked,!randBool,924,inside,courses,rs);
+
+		sportsFacilities.add(t[0]);
+		sportsFacilities.add(t[1]);
+		sportsFacilities.add(t[2]);
+		sportsFacilities.add(t[3]);
+		sportsFacilities.add(t[4]);
+
+	}
 
 
 	public static String displayCourses() {
@@ -22,6 +44,14 @@ public class SportsFacilitySys {
 			}
 		}
 		return outdoor;
+	}
+
+	public static ArrayList<SportsFacility> getSportsFacilities() {
+		return sportsFacilities;
+	}
+
+	public static void setSportsFacilities(ArrayList<SportsFacility> sportsFacilities) {
+		SportsFacilitySys.sportsFacilities = sportsFacilities;
 	}
 
 	public static String deleteReservation( String time, int facilityId, String name, String stuid) {
