@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -29,6 +30,7 @@ import java.awt.Canvas;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
+import javax.swing.JTextArea;
 
 public class TennisPage extends JFrame {
 
@@ -48,6 +50,7 @@ public class TennisPage extends JFrame {
 	private JTextField closingInp;
 	private boolean tableCreated = false;
 	private int x;
+	private JTextField removeInp;
 
 
 
@@ -68,13 +71,15 @@ public class TennisPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+
 		JPanel backgroundPnl = new JPanel();
 		backgroundPnl.setBackground(new Color(248, 250, 252));
 		backgroundPnl.setForeground(new Color(248, 250, 252));
 		backgroundPnl.setBounds(18, 380, 1140, 386);
 		contentPane.add(backgroundPnl);
 		backgroundPnl.setLayout(null);
-		backgroundPnl.setVisible(false);
+
+
 
 
 		JPanel addPanel = new JPanel();
@@ -82,7 +87,6 @@ public class TennisPage extends JFrame {
 		contentPane.add(addPanel);
 		addPanel.setLayout(null);
 		addPanel.setVisible(false);
-
 
 
 
@@ -170,16 +174,11 @@ public class TennisPage extends JFrame {
 		JCheckBox availableCheck = new JCheckBox("Yes");
 		availableCheck.setBounds(239, 133, 128, 23);
 		addPanel.add(availableCheck);
-		
-		//delete this when everything finishes
-				SportsFacilitySys.init();
 
-				createTable();
-		
-		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(0, 0, 0));
-		separator.setBounds(18, 250, 1140, 12);
-		contentPane.add(separator);
+		//delete this when everything finishes
+		SportsFacilitySys.init();
+
+		createTable();
 
 		JButton addBtn = new JButton("Add Facility");
 		addBtn.setForeground(new Color(0, 142, 0));
@@ -192,26 +191,111 @@ public class TennisPage extends JFrame {
 
 			}
 		});
-		
-		x = 200+ 30 * tennisCount;
-		
+
+		x = 210+ 30 * tennisCount;
+
 		addBtn.setBounds(18, x, 125, 29);
 		contentPane.add(addBtn);
+
+
+		JPanel removePanel = new JPanel();
+		removePanel.setBackground(new Color(238, 238, 238));
+		removePanel.setBounds(25, x+ 40, 396, 117);
+		removePanel.setVisible(false);
+		contentPane.add(removePanel);
+
+		removePanel.setLayout(null);
+
+
+		JLabel deleteLbl = new JLabel("Enter Facility Id to remove : ");
+		deleteLbl.setForeground(new Color(148, 17, 0));
+		deleteLbl.setBounds(6, 36, 217, 16);
+		removePanel.add(deleteLbl);
+
+		removeInp = new JTextField();
+		removeInp.setBounds(187, 31, 130, 26);
+		removePanel.add(removeInp);
+		removeInp.setColumns(10);
+
+
+		JTextArea textArea = new JTextArea();
+		textArea.setBackground(new Color(238, 238, 238));
+		textArea.setBounds(135, 76, 255, 26);
+		removePanel.add(textArea);
 
 		JButton removeBtn = new JButton("Remove Facility");
 		removeBtn.setForeground(new Color(255, 38, 0));
 		removeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				removePanel.setVisible(true);	
+
 			}
 		});
 		removeBtn.setBounds(147, x, 151, 29);
 		contentPane.add(removeBtn);
 
+		JButton removeBtn2 = new JButton("Remove");
+		removeBtn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				/*
+				 * 
+				 * 
+				 * 
+				 * 
+				 * BURADAAAA
+				 */
+
+				if(!removeInp.getText().equals("")) {
+					Tennis t = (Tennis)SportsFacilitySys.searchFacilityById(Integer.parseInt(removeInp.getText()));
+
+					if(t != null) {
+						SportsFacilitySys.getSportsFacilities().remove(t);
+						textArea.setText("Facility removed succesfully");
+						tennisCount--;
+
+						x = 210 + 30 * tennisCount;
+
+						// Update button positions
+						addBtn.setBounds(18, x, 125, 29);
+						removeBtn.setBounds(147, x, 151, 29);
+						removePanel.setBounds(25, x + 40, 396, 117);
+					}
+					else {
+						textArea.setText("Facility does not exists");
+
+					}
+				}
+
+				createTable();
+
+				revalidate();
+				repaint();
+
+
+			}
+		});
+		removeBtn2.setBounds(6, 71, 117, 29);
+		removePanel.add(removeBtn2);
+
+
+		JButton closeBtn2 = new JButton("X");
+		closeBtn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				removePanel.setVisible(false);
+			}
+		});
+		closeBtn2.setBackground(new Color(148, 17, 0));
+		closeBtn2.setBounds(6, 6, 36, 26);
+		removePanel.add(closeBtn2);
+		backgroundPnl.setVisible(false);
+
+
+
 
 		JButton addBtn2 = new JButton("Add");
 		addBtn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+
 				ArrayList<String> booked = new ArrayList<>();
 				ArrayList<String> inside = new ArrayList<>();
 				ArrayList<Course> courses = new ArrayList<>();
@@ -232,11 +316,13 @@ public class TennisPage extends JFrame {
 					System.out.println("inside");
 
 					SportsFacilitySys.getSportsFacilities().add(t);
-					
+
 					createTable();
 					x+=30;
 					addBtn.setBounds(18, x, 125, 29);
 					removeBtn.setBounds(147, x, 151, 29);
+					removePanel.setBounds(25, x+ 40, 396, 117);
+
 
 
 				}
@@ -291,12 +377,10 @@ public class TennisPage extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Tennis Courts");
 		lblNewLabel_1.setForeground(new Color(226, 21, 45));
 		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(508, 128, 125, 16);
+		lblNewLabel_1.setBounds(508, 80, 125, 16);
 		contentPane.add(lblNewLabel_1);
 
 
-		//delete this when everything finishes
-		SportsFacilitySys.init();
 
 		createTable();
 
@@ -333,14 +417,6 @@ public class TennisPage extends JFrame {
 		addPanel.add(closingInp);
 
 
-
-
-
-		
-
-
-
-
 	}
 
 
@@ -356,9 +432,9 @@ public class TennisPage extends JFrame {
 
 
 		boolean flag = true;
-		
+
 		tennisCount = 0;
-		
+
 		for(Object sf : SportsFacilitySys.getSportsFacilities()) {
 			if(sf instanceof Tennis) {
 				flag = false;
@@ -367,9 +443,10 @@ public class TennisPage extends JFrame {
 		}
 
 		JPanel courtsPanel = new JPanel();
-		courtsPanel.setBounds(18, 156, 1140, 30);
+		courtsPanel.setBounds(18, 150, 1140, 30);
 		contentPane.add(courtsPanel);
 		courtsPanel.setLayout(null);
+
 
 
 		if(flag) {
@@ -472,71 +549,96 @@ public class TennisPage extends JFrame {
 			racketLbl.setBounds(12, 0, 88, 16);
 			panel_2_10.add(racketLbl);
 
+			
+			/* after hours of trial and error i couldnt delete the rows added with the gui & started to search and 
+			 * 
+			 * **** https://stackoverflow.com/questions/7117332/dynamically-remove-component-from-jpanel *********
+			 * 
+			 * 
+			 * from this link i learned and used revalidate(), repaint() and getComponents
+			 * 
+			 * 
+			 * 
+			 * the code block here removes all panels that have a y bigger than 156 and smaller than x (x is actually a vertical position)
+			 * 
+			 * so because i couldnt remove the ones added dynamically i remove every row and render again
+			 * 
+			 * i know it is not efficient but this was the best i could 
+			 */
+			Component[] components = contentPane.getComponents();
+			for (Component component : components) {
+				if (component instanceof JPanel && component.getBounds().y >= 156 && component.getBounds().y < x) {
+					contentPane.remove(component);
+				}
+			}
+
 			JPanel[] rows = new JPanel[tennisCount];
 			int j = 0;
 			JLabel[] labels = new JLabel[10];
 
+			
 
 			for(Object sf : SportsFacilitySys.getSportsFacilities()) {
 				if(sf instanceof Tennis) {
-					if(!hs.contains(((Tennis)sf).getFacilityId())) {
-						hs.add(((Tennis)sf).getFacilityId());
-						rows[j++] = new JPanel();
-						rows[j-1].setBounds(18, 156+ 30 * j, 1140, 30);
-						rows[j-1].setLayout(null);
+					rows[j++] = new JPanel();
+					rows[j-1].setBounds(18, 156+ 30 * j, 1140, 30);
+					rows[j-1].setLayout(null);
 
-						labels[0] = new JLabel(((Tennis)(sf)).getFacilityId() + "");
-						labels[0].setBounds(35, 6, 100, 16);  
+					labels[0] = new JLabel(((Tennis)(sf)).getFacilityId() + "");
+					labels[0].setBounds(35, 6, 100, 16);  
 
-						labels[1] = new JLabel(((Tennis)(sf)).isIndoor() ? "+" : "-");
-						labels[1].setBounds(160, 6, 100, 16); 
+					labels[1] = new JLabel(((Tennis)(sf)).isIndoor() ? "+" : "-");
+					labels[1].setBounds(160, 6, 100, 16); 
 
-						labels[2] = new JLabel(((Tennis)(sf)).getCapacity() + "");
-						labels[2].setBounds(280, 6, 100, 16);  
+					labels[2] = new JLabel(((Tennis)(sf)).getCapacity() + "");
+					labels[2].setBounds(280, 6, 100, 16);  
 
-						labels[3] = new JLabel(((Tennis)(sf)).getOpeningHour() + ":00 - " + ((Tennis)(sf)).getClosingHour() + ":00");
-						labels[3].setBounds(345, 6, 120, 16); 
+					labels[3] = new JLabel(((Tennis)(sf)).getOpeningHour() + ":00 - " + ((Tennis)(sf)).getClosingHour() + ":00");
+					labels[3].setBounds(345, 6, 120, 16); 
 
-						labels[4] = new JLabel(((Tennis)(sf)).isAvailable() ? "+" : "-");
-						labels[4].setBounds(500, 6, 100, 16); 
+					labels[4] = new JLabel(((Tennis)(sf)).isAvailable() ? "+" : "-");
+					labels[4].setBounds(500, 6, 100, 16); 
 
-						labels[5] = new JLabel(((Tennis)(sf)).lightingAvailability ? "+" : "-");
-						labels[5].setBounds(610, 6, 100, 16);  
+					labels[5] = new JLabel(((Tennis)(sf)).lightingAvailability ? "+" : "-");
+					labels[5].setBounds(610, 6, 100, 16);  
 
-						labels[6] = new JLabel(((Tennis)(sf)).getSurfaceType());
-						labels[6].setBounds(710, 6, 100, 16); 
+					labels[6] = new JLabel(((Tennis)(sf)).getSurfaceType());
+					labels[6].setBounds(710, 6, 100, 16); 
 
-						labels[7] = new JLabel(((Tennis)(sf)).getNetHeight() + "");
-						labels[7].setBounds(825, 6, 100, 16);  
+					labels[7] = new JLabel(((Tennis)(sf)).getNetHeight() + "");
+					labels[7].setBounds(825, 6, 100, 16);  
 
-						labels[8] = new JLabel(((Tennis)(sf)).isDoublesCourt() ? "+" : "-");
-						labels[8].setBounds(950, 6, 120, 16);  
+					labels[8] = new JLabel(((Tennis)(sf)).isDoublesCourt() ? "+" : "-");
+					labels[8].setBounds(950, 6, 120, 16);  
 
-						labels[9] = new JLabel(((Tennis)(sf)).isRacketAvailability() ? "+" : "-");
-						labels[9].setBounds(1060, 6, 100, 16);  
+					labels[9] = new JLabel(((Tennis)(sf)).isRacketAvailability() ? "+" : "-");
+					labels[9].setBounds(1060, 6, 100, 16);  
 
 
 
 
 
-						for(int i = 0; i < 10; i++) {
-							rows[j-1].add(labels[i]);
-
-
-						}
-
-
-
-						contentPane.add(rows[j-1]);
-
+					for(int i = 0; i < 10; i++) {
+						rows[j-1].add(labels[i]);
 
 
 					}
+
+
+
+					contentPane.add(rows[j-1]);
+
+
+
 				}
-
-
 			}
 
+
 		}
+
+		revalidate();
+		repaint();
+
+
 	}
 }
