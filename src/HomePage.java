@@ -31,6 +31,7 @@ public class HomePage extends JFrame {
 	private ImageIcon basketballImg = new ImageIcon(getClass().getResource("/images/basketball.png"));
 	private ImageIcon tennisImg = new ImageIcon(getClass().getResource("/images/tennis.png"));
 	private ImageIcon squashImg = new ImageIcon(getClass().getResource("/images/squash.png"));
+	private TennisPage tennisFrame = new TennisPage(this);
 
 
 
@@ -90,6 +91,13 @@ public class HomePage extends JFrame {
 		contentPane.add(basketabllBtn);
 		
 		JButton tennisBtn = new JButton("Tennis");
+		tennisBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tennisFrame.setVisible(true);
+				setVisible(false);
+				
+			}
+		});
 		tennisBtn.setBounds(925, 34, 117, 29);
 		contentPane.add(tennisBtn);
 		
@@ -194,6 +202,13 @@ public class HomePage extends JFrame {
 		tennisPnl.add(tennislFacCount);
 		
 		JButton tennisMainBtn = new JButton("Tennis Page");
+		tennisMainBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tennisFrame.setVisible(true);
+				setVisible(false);
+				
+			}
+		});
 		tennisMainBtn.setBounds(0, 91, 213, 29);
 		tennisPnl.add(tennisMainBtn);
 		

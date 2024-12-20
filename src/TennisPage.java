@@ -31,31 +31,16 @@ public class TennisPage extends JFrame {
 	private ImageIcon logoImg = new ImageIcon(getClass().getResource("/images/logo.png"));
 	private ImageIcon footballImg = new ImageIcon(getClass().getResource("/images/football.png"));
 	private ImageIcon footballBanner = new ImageIcon(getClass().getResource("/images/spor10.jpg"));
+	private static HomePage hp = new HomePage();
 
 
 
-
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TennisPage frame = new TennisPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public TennisPage() {
+	public TennisPage(HomePage hp) {
+		this.hp = hp;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1192, 820);
 		contentPane = new JPanel();
@@ -81,6 +66,8 @@ public class TennisPage extends JFrame {
 		HomePage.setBounds(1054, 34, 117, 29);
 		HomePage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				hp.setVisible(true);
+				setVisible(false);
 			}
 		});
 		contentPane.add(HomePage);
