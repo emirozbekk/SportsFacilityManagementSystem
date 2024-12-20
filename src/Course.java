@@ -1,5 +1,23 @@
+import java.util.Objects;
 
 public class Course {
+	@Override
+	public int hashCode() {
+		return Objects.hash(courseName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Course other = (Course) obj;
+		return Objects.equals(courseName, other.courseName);
+	}
+
 	private String courseName;
 	private String courseCapacity;
 	private double courseFee;

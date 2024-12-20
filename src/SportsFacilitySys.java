@@ -23,6 +23,10 @@ public class SportsFacilitySys {
 		sportsFacilities.add(t[2]);
 		sportsFacilities.add(t[3]);
 		sportsFacilities.add(t[4]);
+		
+		t[1].courses.add(new Course("Begginer Course", "5", 2501));
+		t[2].courses.add(new Course("High level Course", "5", 2501));
+
 
 	}
 

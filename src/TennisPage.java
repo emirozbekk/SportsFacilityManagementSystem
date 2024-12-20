@@ -179,6 +179,9 @@ public class TennisPage extends JFrame {
 		SportsFacilitySys.init();
 
 		createTable();
+		
+		JButton removeBtn = new JButton("Remove Facility");
+		removeBtn.setForeground(new Color(255, 38, 0));
 
 		JButton addBtn = new JButton("Add Facility");
 		addBtn.setForeground(new Color(0, 142, 0));
@@ -186,6 +189,9 @@ public class TennisPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				addPanel.setVisible(true);
 				backgroundPnl.setVisible(true);
+				addBtn.setVisible(false);
+				removeBtn.setVisible(false);
+
 
 
 
@@ -223,8 +229,7 @@ public class TennisPage extends JFrame {
 		textArea.setBounds(135, 76, 255, 26);
 		removePanel.add(textArea);
 
-		JButton removeBtn = new JButton("Remove Facility");
-		removeBtn.setForeground(new Color(255, 38, 0));
+		
 		removeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				removePanel.setVisible(true);	
@@ -390,6 +395,8 @@ public class TennisPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				addPanel.setVisible(false);
 				backgroundPnl.setVisible(false);
+				addBtn.setVisible(true);
+				removeBtn.setVisible(true);
 
 
 			}
@@ -555,7 +562,7 @@ public class TennisPage extends JFrame {
 			 * **** https://stackoverflow.com/questions/7117332/dynamically-remove-component-from-jpanel *********
 			 * 
 			 * 
-			 * from this link i learned and used revalidate(), repaint() and getComponents
+			 * from this link i learned and used revalidate(), repaint() and getComponents()
 			 * 
 			 * 
 			 * 
