@@ -270,6 +270,8 @@ public class TennisPage extends JFrame {
 				if(!idInpRes.getText().equals("") || !nameInpRes.getText().equals("") || !stuIdInpRes.getText().equals("") || !timeInpRes.getText().equals("") ) {
 					if(SportsFacilitySys.reserveFacility(Integer.parseInt(idInpRes.getText()), nameInpRes.getText(),nameInpRes.getText() , timeInpRes.getText())) {
 						taRes.setText("Reservation is succesfull");
+						System.out.println(SportsFacilitySys.displaySchedule());
+
 					}
 					else {
 						taRes.setText("Reservation unsuccesfull ");

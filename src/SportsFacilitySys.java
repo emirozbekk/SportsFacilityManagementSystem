@@ -175,6 +175,8 @@ public class SportsFacilitySys {
 				
 				sf.getBookedBy().add(s);
 				
+				sf.getReservationsSet().add(s);
+				
 				return true;
 			}
 		}
@@ -230,10 +232,10 @@ public class SportsFacilitySys {
         String reservations ="";
 
 
-        for(SportsFacility sf : sportsFacilities) {
-        	for(String s : sf.getReservationsSet()) {
-        		reservations += s;
-        	}
+        SportsFacility sf = SportsFacilitySys.getSportsFacilities().get(0);
+        
+        for(String s : sf.getReservationsSet()) {
+        	reservations += s;
         }
         	
         	
