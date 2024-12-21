@@ -342,8 +342,8 @@ public class TennisPage extends JFrame {
 		contentPane.add(addReservationBtn);
 
 		JPanel removeResPnl = new JPanel();
-		//addResPanel.setBounds(22, x+40, 436, 250);
-		removeResPnl.setBounds(6, 500, 436, 250);
+		removeResPnl.setBounds(22, x+40, 436, 250);
+		//removeResPnl.setBounds(6, 500, 436, 250);
 		removeResPnl.setVisible(false);
 		contentPane.add(removeResPnl);
 		removeResPnl.setLayout(null);
@@ -380,10 +380,12 @@ public class TennisPage extends JFrame {
 						addBtn.setBounds(18, x, 125, 29);
 						removeBtn.setBounds(147, x, 151, 29);
 						removePanel.setBounds(25, x + 40, 396, 117);
-						addResPanel.setBounds(22, x+40, 419, 250);
 						addReservationBtn.setBounds(297, x, 151, 29);
 						removeReservationBtn.setBounds(450, x, 151, 29);
-						removeResPnl.setBounds(6, 500, 436, 250);
+						removeResPnl.setBounds(22, x+40, 436, 250);
+						addResPanel.setBounds(22, x+40, 419, 250);
+
+
 
 
 
@@ -454,7 +456,8 @@ public class TennisPage extends JFrame {
 					addResPanel.setBounds(22, x+40, 419, 250);
 					addReservationBtn.setBounds(297, x, 151, 29);
 					removeReservationBtn.setBounds(450, x, 151, 29);
-					removeResPnl.setBounds(6, 500, 436, 250);
+					removeResPnl.setBounds(22, x+40, 436, 250);
+
 
 
 
@@ -570,6 +573,7 @@ public class TennisPage extends JFrame {
 		JButton closeRemResBtn = new JButton("X");
 		closeRemResBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				removeResPnl.setVisible(false);
 			}
 		});
 		closeRemResBtn.setBounds(6, 6, 52, 29);
