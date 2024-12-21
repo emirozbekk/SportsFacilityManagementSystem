@@ -48,7 +48,7 @@ public class TennisCourses extends JFrame {
 	private JTextField capacityInp;
 	private JTextField idInp;
 	private JTextField cnameRemove;
-
+	private TennisPage tp;
 
 
 
@@ -56,7 +56,8 @@ public class TennisCourses extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TennisCourses() {
+	public TennisCourses(TennisPage tp) {
+		this.tp = tp;
 		System.out.println("constructor called"); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1192, 820);
@@ -291,16 +292,6 @@ public class TennisCourses extends JFrame {
 		uniName.setFont(new Font("Beirut", Font.PLAIN, 20));
 		contentPane.add(uniName);
 
-		JButton HomePage = new JButton("Home Page");
-		HomePage.setBounds(1054, 34, 117, 29);
-		HomePage.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				hp.setVisible(true);
-				setVisible(false);
-			}
-		});
-		contentPane.add(HomePage);
-
 		JLabel lblNewLabel = new JLabel("Sport Facility Management System");
 		lblNewLabel.setBounds(94, 55, 283, 21);
 		lblNewLabel.setForeground(new Color(225, 0, 26));
@@ -315,6 +306,16 @@ public class TennisCourses extends JFrame {
 		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(508, 122, 144, 16);
 		contentPane.add(lblNewLabel_1);
+		
+		JButton tennisBtn = new JButton("Tennis Page");
+		tennisBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tp.setVisible(true);
+				setVisible(false);
+			}
+		});
+		tennisBtn.setBounds(1041, 34, 117, 29);
+		contentPane.add(tennisBtn);
 
 
 

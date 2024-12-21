@@ -53,6 +53,7 @@ public class TennisPage extends JFrame {
 	private boolean tableCreated = false;
 	private int x;
 	private JTextField removeInp;
+	private TennisCourses tc = new TennisCourses(this);
 
 
 
@@ -401,6 +402,12 @@ public class TennisPage extends JFrame {
 		addPanel.add(closingInp);
 		
 		JButton courseBtn = new JButton("Courses");
+		courseBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tc.setVisible(true);
+				setVisible(false);
+			}
+		});
 		courseBtn.setBounds(925, 34, 117, 29);
 		contentPane.add(courseBtn);
 		
