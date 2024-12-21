@@ -57,7 +57,7 @@ public class TennisCourses extends JFrame {
 	 * Create the frame.
 	 */
 	public TennisCourses() {
-		System.out.println("TennisPage constructor called"); 
+		System.out.println("constructor called"); 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1192, 820);
 		contentPane = new JPanel();
@@ -214,14 +214,7 @@ public class TennisCourses extends JFrame {
 		JButton removeBtn2 = new JButton("Remove");
 		removeBtn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				/*
-				 * 
-				 * 
-				 * 
-				 * 
-				 * BURADAAAA
-				 */
-
+			
 				if(!removeInp.getText().equals("")) {
 					Tennis t = (Tennis)SportsFacilitySys.searchFacilityById(Integer.parseInt(removeInp.getText()));
 
