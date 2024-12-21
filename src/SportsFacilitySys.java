@@ -170,7 +170,7 @@ public class SportsFacilitySys {
 		if(sf != null) {
 			booked = sf.bookFacility(time);
 			
-			if(!booked) {
+			if(booked) {
 				s += name + "*" + stuId + "*" + time;
 				
 				sf.getBookedBy().add(s);
