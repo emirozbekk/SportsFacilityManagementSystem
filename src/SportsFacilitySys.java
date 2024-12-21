@@ -3,9 +3,9 @@ import java.util.TreeSet;
 
 public class SportsFacilitySys {
 	private static ArrayList<SportsFacility> sportsFacilities = new ArrayList<>();
-	
+
 	public static void init() {
-		Tennis[] t = new Tennis[5];
+		Tennis[] t = new Tennis[3];
 		ArrayList<String> booked = new ArrayList<>();
 		ArrayList<String> inside = new ArrayList<>();
 		TreeSet<String> rs = new TreeSet<>();
@@ -15,15 +15,12 @@ public class SportsFacilitySys {
 		t[0] = new Tennis("Hard", 91.4 , randBool, randBool, "East Campus", !randBool, 2, "10","17",!randBool,new ArrayList<String>(),randBool,975,inside,courses,new TreeSet<String>());
 		t[1] = new Tennis("Grass", 90.4 , randBool, !randBool, "Main Campus", randBool, 2, "12","23",!randBool,new ArrayList<String>(),!randBool,342,inside,courses,new TreeSet<String>());
 		t[2] = new Tennis("Clay", 91.7 , randBool, randBool, "Main Campus", randBool, 2, "10","19",!randBool,new ArrayList<String>(),randBool,421,inside,courses,new TreeSet<String>());
-		t[3] = new Tennis("Grass", 101.4, randBool, !randBool, "Main Campus", !randBool, 2, "11","14",!randBool,new ArrayList<String>(),!randBool,134,inside,courses,new TreeSet<String>());
-		t[4] = new Tennis("Hard", 87.4 , randBool, !randBool, "East Campus", !randBool, 2, "10","19",!randBool,new ArrayList<String>(),!randBool,924,inside,courses,new TreeSet<String>());
-
+		
 		sportsFacilities.add(t[0]);
 		sportsFacilities.add(t[1]);
 		sportsFacilities.add(t[2]);
-		sportsFacilities.add(t[3]);
-		sportsFacilities.add(t[4]);
 		
+
 		t[1].courses.add(new Course("Begginer Course", "5", 2501));
 		t[2].courses.add(new Course("High level Course", "5", 2501));
 
@@ -58,7 +55,7 @@ public class SportsFacilitySys {
 		SportsFacilitySys.sportsFacilities = sportsFacilities;
 	}
 
-	public static String deleteReservation( String time, int facilityId, String name, String stuid) {
+	/*public static String deleteReservation( String time, int facilityId, String name, String stuid) {
 		SportsFacility facility = searchFacilityById(facilityId);
 		String result="";
 		String a ="";
@@ -72,12 +69,39 @@ public class SportsFacilitySys {
 		else {
 			result+="No reservation with the given information";
 		}
-			
-			
+
+
 
 		return result;
 
-		
+
+	}*/
+
+
+	public static String deleteReservation(String time, int facilityId, String name, String stuid ) {
+		SportsFacility facility = searchFacilityById(facilityId);
+		String result="";
+		String listStr ="";
+		String rSetStr="";
+		if(facility!=null) {
+			if(!facility.bookFacility(time)) {
+				listStr = name +"*" +stuid +"*" +time;
+				facility.getBookedBy().remove(listStr);
+				rSetStr="Facility is booked at " + time + " by " + name + "(" + stuid + ")\n";
+				facility.getReservationsSet().remove(rSetStr);
+				result+="Removed reservation: Student name with the id: " + name +" " + stuid + "\nTime: " + time;
+			}
+
+			else {
+				result+="No reservation with the given information";
+			}
+		}
+
+
+
+		return result;
+
+
 	}
 
 
@@ -159,40 +183,43 @@ public class SportsFacilitySys {
 
 		return outStr;
 	}
-	
-	
+
+
 	public static boolean reserveFacility(int facilityId, String name, String stuId, String time) {
 
 		SportsFacility sf = searchFacilityById(facilityId);
 		boolean booked = false;
 		String s = "";
-		
+		String rSetStr = "";
+
 		if(sf != null) {
 			booked = sf.bookFacility(time);
-			
+
 			if(booked) {
 				s += name + "*" + stuId + "*" + time;
-				
+
 				sf.getBookedBy().add(s);
+
+				rSetStr="Facility is booked at " + time + " by " + name + "(" + stuId + ")\n";
 				
-				sf.reservationsSet.add(s);
-				
+				sf.reservationsSet.add(rSetStr);
+
 				return true;
 			}
 		}
-		
-		
-		
+
+
+
 		return false;
-		
+
 	}
-	
-	
+
+
 	public static void calculateCourseFee(Course course) {
 		//base price
 		double fee = 250;
-		
-		
+
+
 		if(course.getCourseName().contains("Football")) {
 			fee += 150;
 		}
@@ -205,44 +232,44 @@ public class SportsFacilitySys {
 		else if(course.getCourseName().contains("Basketball")) {
 			fee += 200;
 		}
-		
+
 		course.setCourseFee(fee);
-		
+
 	}
-	
-	
+
+
 	public static boolean addCourse(int facilityId , String CourseName, String CourseCapacity , double CourseFee) {
 
-        Course c = new Course(CourseName,CourseCapacity,CourseFee);
+		Course c = new Course(CourseName,CourseCapacity,CourseFee);
 
 
-        SportsFacility sf = searchFacilityById(facilityId);
-        if(sf!=null) {
-            sf.courses.add(c);
-            return true;
-            }
+		SportsFacility sf = searchFacilityById(facilityId);
+		if(sf!=null) {
+			sf.courses.add(c);
+			return true;
+		}
 
 
-        return false;
+		return false;
 
 
-    }
+	}
 
 
-	 public static String displaySchedule() {
-	        String reservations ="";
+	public static String displaySchedule() {
+		String reservations ="";
 
 
-	        for(SportsFacility sf : sportsFacilities) {
-	        	for(String s : sf.getReservationsSet()) {
-	        		reservations += s;
-	        	}
-	        }
-	        	
-	        	
-	        return reservations;
-	    }
+		for(SportsFacility sf : sportsFacilities) {
+			for(String s : sf.getReservationsSet()) {
+				reservations += s;
+			}
+		}
 
-	
+
+		return reservations;
+	}
+
+
 
 }

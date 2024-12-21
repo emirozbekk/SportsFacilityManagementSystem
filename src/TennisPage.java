@@ -61,16 +61,12 @@ public class TennisPage extends JFrame {
 	private JTextField stuIdRemInp;
 	private JTextField timeRemInp;
 
-
-
-
-
 	/**
 	 * Create the frame.
 	 */
 	public TennisPage(HomePage hp) {
 		this.hp = hp;
-		System.out.println("TennisPage constructor called"); 
+		System.out.println("TennisPage constructor called");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1192, 820);
 		contentPane = new JPanel();
@@ -80,7 +76,6 @@ public class TennisPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-
 		JPanel backgroundPnl = new JPanel();
 		backgroundPnl.setBackground(new Color(248, 250, 252));
 		backgroundPnl.setForeground(new Color(248, 250, 252));
@@ -88,17 +83,11 @@ public class TennisPage extends JFrame {
 		contentPane.add(backgroundPnl);
 		backgroundPnl.setLayout(null);
 
-
-
-
-
 		JPanel addPanel = new JPanel();
 		addPanel.setBounds(18, 117, 1140, 265);
 		contentPane.add(addPanel);
 		addPanel.setLayout(null);
 		addPanel.setVisible(false);
-
-
 
 		JLabel locationLbl = new JLabel("Location : ");
 		locationLbl.setBounds(109, 40, 78, 16);
@@ -185,7 +174,7 @@ public class TennisPage extends JFrame {
 		availableCheck.setBounds(239, 133, 128, 23);
 		addPanel.add(availableCheck);
 
-		//delete this when everything finishes
+		// delete this when everything finishes
 		SportsFacilitySys.init();
 
 		createTable();
@@ -202,17 +191,14 @@ public class TennisPage extends JFrame {
 				addBtn.setVisible(false);
 				removeBtn.setVisible(false);
 
-
-
-
 			}
 		});
 
-		x = 210+ 30 * tennisCount;
+		x = 210 + 30 * tennisCount;
 
 		JPanel addResPanel = new JPanel();
-		addResPanel.setBounds(22, x+40, 419, 250);
-		//addResPanel.setBounds(6, 500, 419, 250);
+		addResPanel.setBounds(22, x + 40, 419, 250);
+		// addResPanel.setBounds(6, 500, 419, 250);
 		addResPanel.setVisible(false);
 
 		contentPane.add(addResPanel);
@@ -271,17 +257,17 @@ public class TennisPage extends JFrame {
 		JButton addBtnRes = new JButton("Reserve");
 		addBtnRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!idInpRes.getText().equals("") || !nameInpRes.getText().equals("") || !stuIdInpRes.getText().equals("") || !timeInpRes.getText().equals("") ) {
-					if(SportsFacilitySys.reserveFacility(Integer.parseInt(idInpRes.getText()), nameInpRes.getText(), stuIdInpRes.getText() , timeInpRes.getText())) {
+				if (!idInpRes.getText().equals("") || !nameInpRes.getText().equals("")
+						|| !stuIdInpRes.getText().equals("") || !timeInpRes.getText().equals("")) {
+					if (SportsFacilitySys.reserveFacility(Integer.parseInt(idInpRes.getText()), nameInpRes.getText(),
+							stuIdInpRes.getText(), timeInpRes.getText())) {
 						taRes.setText("Reservation is succesfull");
 						System.out.println(SportsFacilitySys.displaySchedule());
 
-					}
-					else {
+					} else {
 						taRes.setText("Reservation unsuccesfull ");
 					}
-				}
-				else {
+				} else {
 					taRes.setText("Reservation unsuccesfull");
 				}
 			}
@@ -289,21 +275,16 @@ public class TennisPage extends JFrame {
 		addBtnRes.setBounds(232, 202, 117, 29);
 		addResPanel.add(addBtnRes);
 
-
-
-
 		addBtn.setBounds(18, x, 125, 29);
 		contentPane.add(addBtn);
 
-
 		JPanel removePanel = new JPanel();
 		removePanel.setBackground(new Color(238, 238, 238));
-		removePanel.setBounds(25, x+ 40, 396, 117);
+		removePanel.setBounds(25, x + 40, 396, 117);
 		removePanel.setVisible(false);
 		contentPane.add(removePanel);
 
 		removePanel.setLayout(null);
-
 
 		JLabel deleteLbl = new JLabel("Enter Facility Id to remove : ");
 		deleteLbl.setForeground(new Color(148, 17, 0));
@@ -315,16 +296,14 @@ public class TennisPage extends JFrame {
 		removePanel.add(removeInp);
 		removeInp.setColumns(10);
 
-
 		JTextArea textArea = new JTextArea();
 		textArea.setBackground(new Color(238, 238, 238));
 		textArea.setBounds(135, 76, 255, 26);
 		removePanel.add(textArea);
 
-
 		removeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				removePanel.setVisible(true);	
+				removePanel.setVisible(true);
 
 			}
 		});
@@ -342,8 +321,8 @@ public class TennisPage extends JFrame {
 		contentPane.add(addReservationBtn);
 
 		JPanel removeResPnl = new JPanel();
-		removeResPnl.setBounds(22, x+40, 436, 250);
-		//removeResPnl.setBounds(6, 500, 436, 250);
+		removeResPnl.setBounds(22, x + 40, 436, 250);
+		// removeResPnl.setBounds(6, 500, 436, 250);
 		removeResPnl.setVisible(false);
 		contentPane.add(removeResPnl);
 		removeResPnl.setLayout(null);
@@ -359,17 +338,34 @@ public class TennisPage extends JFrame {
 		});
 		contentPane.add(removeReservationBtn);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(600, 630, 500, 85);
+		contentPane.add(scrollPane);
 		
-
+		JTextArea textArea_1 = new JTextArea();
+		textArea_1.setBackground(new Color(249, 250, 252));
+		scrollPane.setViewportView(textArea_1);
+		
+		JButton dispBtn = new JButton("Display Schedule");
+		dispBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textArea_1.setText(SportsFacilitySys.displaySchedule());
+			}
+		});
+		dispBtn.setBounds(940, 730, 164, 29);
+		dispBtn.setVisible(true);
+		contentPane.add(dispBtn);
+		repaint();
+		revalidate();
 
 		JButton removeBtn2 = new JButton("Remove");
 		removeBtn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if(!removeInp.getText().equals("")) {
-					Tennis t = (Tennis)SportsFacilitySys.searchFacilityById(Integer.parseInt(removeInp.getText()));
+				if (!removeInp.getText().equals("")) {
+					Tennis t = (Tennis) SportsFacilitySys.searchFacilityById(Integer.parseInt(removeInp.getText()));
 
-					if(t != null) {
+					if (t != null) {
 						SportsFacilitySys.getSportsFacilities().remove(t);
 						textArea.setText("Facility removed succesfully");
 						tennisCount--;
@@ -382,16 +378,15 @@ public class TennisPage extends JFrame {
 						removePanel.setBounds(25, x + 40, 396, 117);
 						addReservationBtn.setBounds(297, x, 151, 29);
 						removeReservationBtn.setBounds(450, x, 151, 29);
-						removeResPnl.setBounds(22, x+40, 436, 250);
-						addResPanel.setBounds(22, x+40, 419, 250);
+						removeResPnl.setBounds(22, x + 40, 436, 250);
+						addResPanel.setBounds(22, x + 40, 419, 250);
+						dispBtn.setBounds(26, x+300, 164, 29);
+						scrollPane.setBounds(22, x+100, 1140, 150);
 
 
 
-
-
-
-					}
-					else {
+						
+					} else {
 						textArea.setText("Facility does not exists");
 
 					}
@@ -402,12 +397,10 @@ public class TennisPage extends JFrame {
 				revalidate();
 				repaint();
 
-
 			}
 		});
 		removeBtn2.setBounds(6, 71, 117, 29);
 		removePanel.add(removeBtn2);
-
 
 		JButton closeBtn2 = new JButton("X");
 		closeBtn2.addActionListener(new ActionListener() {
@@ -420,9 +413,6 @@ public class TennisPage extends JFrame {
 		removePanel.add(closeBtn2);
 		backgroundPnl.setVisible(false);
 
-
-
-
 		JButton addBtn2 = new JButton("Add");
 		addBtn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -433,37 +423,41 @@ public class TennisPage extends JFrame {
 				TreeSet<String> rs = new TreeSet<>();
 
 				/*
-				 * 	t[0] = new Tennis("Hard", 91.4 , randBool, randBool, "East Campus", !randBool, 2, "10","17",!randBool,booked,randBool,975,inside,courses,rs);
-				 *  Tennis(surface, netHeight, doubles, racket, location, indoor, capacity, opening, closing, availability, booked, lighting id, inside, courses, rs);
+				 * t[0] = new Tennis("Hard", 91.4 , randBool, randBool, "East Campus",
+				 * !randBool, 2, "10","17",!randBool,booked,randBool,975,inside,courses,rs);
+				 * Tennis(surface, netHeight, doubles, racket, location, indoor, capacity,
+				 * opening, closing, availability, booked, lighting id, inside, courses, rs);
 				 * 
 				 * 
 				 */
 
-
-				if(!surfaceInp.getText().equals("") || !heightInp.getText().equals("")|| !locationInp.getText().equals("") || !capacityInp.getText().equals("") ||  !openingInp.getText().equals("") || !closingInp.getText().equals("") || !idInp.getText().equals("")) {
-					Tennis t = new Tennis(surfaceInp.getText(), Double.parseDouble(heightInp.getText()), doublesCheck.isSelected(),racketCheck.isSelected(), locationInp.getText(), indoorCheck.isSelected(),
-							Integer.parseInt(capacityInp.getText()), openingInp.getText(), closingInp.getText(), availableCheck.isSelected(), booked, lightingCheck.isSelected(), Integer.parseInt(idInp.getText()), inside, courses, rs);
+				if (!surfaceInp.getText().equals("") || !heightInp.getText().equals("")
+						|| !locationInp.getText().equals("") || !capacityInp.getText().equals("")
+						|| !openingInp.getText().equals("") || !closingInp.getText().equals("")
+						|| !idInp.getText().equals("")) {
+					Tennis t = new Tennis(surfaceInp.getText(), Double.parseDouble(heightInp.getText()),
+							doublesCheck.isSelected(), racketCheck.isSelected(), locationInp.getText(),
+							indoorCheck.isSelected(), Integer.parseInt(capacityInp.getText()), openingInp.getText(),
+							closingInp.getText(), availableCheck.isSelected(), booked, lightingCheck.isSelected(),
+							Integer.parseInt(idInp.getText()), inside, courses, rs);
 
 					System.out.println("inside");
 
 					SportsFacilitySys.getSportsFacilities().add(t);
 
 					createTable();
-					x+=30;
+					x += 30;
 					addBtn.setBounds(18, x, 125, 29);
 					removeBtn.setBounds(147, x, 151, 29);
-					removePanel.setBounds(25, x+ 40, 396, 117);
-					addResPanel.setBounds(22, x+40, 419, 250);
+					removePanel.setBounds(25, x + 40, 396, 117);
+					addResPanel.setBounds(22, x + 40, 419, 250);
 					addReservationBtn.setBounds(297, x, 151, 29);
 					removeReservationBtn.setBounds(450, x, 151, 29);
-					removeResPnl.setBounds(22, x+40, 436, 250);
+					removeResPnl.setBounds(22, x + 40, 436, 250);
+					scrollPane.setBounds(22, x+100, 1140, 150);
+					dispBtn.setBounds(26, x+300, 164, 29);
 
-
-
-
-
-
-
+				
 
 				}
 
@@ -512,19 +506,13 @@ public class TennisPage extends JFrame {
 		lblNewLabel.setFont(new Font("Beirut", Font.PLAIN, 13));
 		contentPane.add(lblNewLabel);
 
-
-
-
 		JLabel lblNewLabel_1 = new JLabel("Tennis Courts");
 		lblNewLabel_1.setForeground(new Color(226, 21, 45));
 		lblNewLabel_1.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(508, 80, 125, 16);
 		contentPane.add(lblNewLabel_1);
 
-
-
 		createTable();
-
 
 		JButton closeBtn = new JButton("X");
 		closeBtn.addActionListener(new ActionListener() {
@@ -533,7 +521,6 @@ public class TennisPage extends JFrame {
 				backgroundPnl.setVisible(false);
 				addBtn.setVisible(true);
 				removeBtn.setVisible(true);
-
 
 			}
 		});
@@ -567,9 +554,7 @@ public class TennisPage extends JFrame {
 		});
 		courseBtn.setBounds(935, 34, 117, 29);
 		contentPane.add(courseBtn);
-		
-		
-		
+
 		JButton closeRemResBtn = new JButton("X");
 		closeRemResBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -578,92 +563,86 @@ public class TennisPage extends JFrame {
 		});
 		closeRemResBtn.setBounds(6, 6, 52, 29);
 		removeResPnl.add(closeRemResBtn);
-		
-		JLabel idLblRes_1 = new JLabel("Enter Facility Id to Reserve : ");
+
+		JLabel idLblRes_1 = new JLabel("Enter Facility Id to remove res. : ");
 		idLblRes_1.setBounds(57, 47, 178, 16);
 		removeResPnl.add(idLblRes_1);
-		
+
 		idRemInp = new JTextField();
 		idRemInp.setColumns(10);
 		idRemInp.setBounds(247, 42, 130, 26);
 		removeResPnl.add(idRemInp);
-		
+
 		JLabel nameLblRes_1 = new JLabel("Enter Your Name : ");
 		nameLblRes_1.setBounds(118, 75, 117, 16);
 		removeResPnl.add(nameLblRes_1);
-		
+
 		nameRemInp = new JTextField();
 		nameRemInp.setColumns(10);
 		nameRemInp.setBounds(247, 70, 130, 26);
 		removeResPnl.add(nameRemInp);
-		
+
 		JLabel stuIdLblRes_1 = new JLabel("Enter Your Id : ");
 		stuIdLblRes_1.setBounds(142, 103, 93, 16);
 		removeResPnl.add(stuIdLblRes_1);
-		
+
 		stuIdRemInp = new JTextField();
 		stuIdRemInp.setColumns(10);
 		stuIdRemInp.setBounds(247, 98, 130, 26);
 		removeResPnl.add(stuIdRemInp);
-		
+
 		JLabel timeLblRes_1 = new JLabel("Enter Time : ");
 		timeLblRes_1.setBounds(152, 137, 83, 16);
 		removeResPnl.add(timeLblRes_1);
-		
+
 		timeRemInp = new JTextField();
 		timeRemInp.setColumns(10);
 		timeRemInp.setBounds(247, 132, 130, 26);
 		removeResPnl.add(timeRemInp);
-		
 
 		JTextArea taRem = new JTextArea();
 		taRem.setBackground(new Color(237, 238, 238));
 		taRem.setBounds(30, 193, 205, 24);
 		removeResPnl.add(taRem);
-		
+
 		JButton addBtnRem = new JButton("Reserve");
 		addBtnRem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				if(!idInpRes.getText().equals("") || !nameInpRes.getText().equals("") || !stuIdInpRes.getText().equals("") || !timeInpRes.getText().equals("") ) {
-					taRem.setText(SportsFacilitySys.deleteReservation(timeRemInp.getText(), Integer.parseInt(idRemInp.getText()), nameRemInp.getText(), stuIdRemInp.getText()));
+
+				if (!idInpRes.getText().equals("") || !nameInpRes.getText().equals("")
+						|| !stuIdInpRes.getText().equals("") || !timeInpRes.getText().equals("")) {
+					taRem.setText(SportsFacilitySys.deleteReservation(timeRemInp.getText(),
+							Integer.parseInt(idRemInp.getText()), nameRemInp.getText(), stuIdRemInp.getText()));
+					taRem.setVisible(false);
 
 				}
-					
-				
-				
+
 			}
 		});
 		addBtnRem.setBounds(260, 188, 117, 29);
 		removeResPnl.add(addBtnRem);
 		
-
-
-
+		
 
 	}
 
-
-
 	/*
-	 *  Create table
+	 * Create table
 	 */
-
 
 	public void createTable() {
 		System.out.println("inside");
 		HashSet<Tennis> hs = new HashSet<>();
 
-
 		boolean flag = true;
 
 		tennisCount = 0;
 
-		for(Object sf : SportsFacilitySys.getSportsFacilities()) {
-			if(sf instanceof Tennis) {
+		for (Object sf : SportsFacilitySys.getSportsFacilities()) {
+			if (sf instanceof Tennis) {
 				flag = false;
 				tennisCount++;
-				hs.add((Tennis)sf);
+				hs.add((Tennis) sf);
 			}
 		}
 
@@ -672,9 +651,7 @@ public class TennisPage extends JFrame {
 		contentPane.add(courtsPanel);
 		courtsPanel.setLayout(null);
 
-
-
-		if(flag) {
+		if (flag) {
 			JLabel noTennisCourts = new JLabel("There are no Tennis courts!!");
 			noTennisCourts.setBounds(480, 5, 200, 16);
 			courtsPanel.add(noTennisCourts);
@@ -774,21 +751,26 @@ public class TennisPage extends JFrame {
 			racketLbl.setBounds(12, 0, 88, 16);
 			panel_2_10.add(racketLbl);
 
-
-			/* after hours of trial and error i couldnt delete the rows added with the gui & started to search and 
+			/*
+			 * after hours of trial and error i couldnt delete the rows added with the gui &
+			 * started to search and
 			 * 
-			 * **** https://stackoverflow.com/questions/7117332/dynamically-remove-component-from-jpanel *********
+			 * ****
+			 * https://stackoverflow.com/questions/7117332/dynamically-remove-component-from
+			 * -jpanel *********
 			 * 
 			 * 
 			 * from this link i learned and used revalidate(), repaint() and getComponents()
 			 * 
 			 * 
 			 * 
-			 * the code block here removes all panels that have a y bigger than 156 and smaller than x (x is actually a vertical position)
+			 * the code block here removes all panels that have a y bigger than 156 and
+			 * smaller than x (x is actually a vertical position)
 			 * 
-			 * so because i couldnt remove the ones added dynamically i remove every row and render again
+			 * so because i couldnt remove the ones added dynamically i remove every row and
+			 * render again
 			 * 
-			 * i know it is not efficient but this was the best i could 
+			 * i know it is not efficient but this was the best i could
 			 */
 			Component[] components = contentPane.getComponents();
 			for (Component component : components) {
@@ -801,71 +783,55 @@ public class TennisPage extends JFrame {
 			int j = 0;
 			JLabel[] labels = new JLabel[10];
 
-
-
-			for(Tennis sf : hs) {
+			for (Tennis sf : hs) {
 
 				rows[j++] = new JPanel();
-				rows[j-1].setBounds(18, 156+ 30 * j, 1140, 30);
-				rows[j-1].setLayout(null);
+				rows[j - 1].setBounds(18, 156 + 30 * j, 1140, 30);
+				rows[j - 1].setLayout(null);
 
-				labels[0] = new JLabel(((Tennis)(sf)).getFacilityId() + "");
-				labels[0].setBounds(35, 6, 100, 16);  
+				labels[0] = new JLabel(((Tennis) (sf)).getFacilityId() + "");
+				labels[0].setBounds(35, 6, 100, 16);
 
-				labels[1] = new JLabel(((Tennis)(sf)).isIndoor() ? "+" : "-");
-				labels[1].setBounds(160, 6, 100, 16); 
+				labels[1] = new JLabel(((Tennis) (sf)).isIndoor() ? "+" : "-");
+				labels[1].setBounds(160, 6, 100, 16);
 
-				labels[2] = new JLabel(((Tennis)(sf)).getCapacity() + "");
-				labels[2].setBounds(280, 6, 100, 16);  
+				labels[2] = new JLabel(((Tennis) (sf)).getCapacity() + "");
+				labels[2].setBounds(280, 6, 100, 16);
 
-				labels[3] = new JLabel(((Tennis)(sf)).getOpeningHour() + ":00 - " + ((Tennis)(sf)).getClosingHour() + ":00");
-				labels[3].setBounds(345, 6, 120, 16); 
+				labels[3] = new JLabel(
+						((Tennis) (sf)).getOpeningHour() + ":00 - " + ((Tennis) (sf)).getClosingHour() + ":00");
+				labels[3].setBounds(345, 6, 120, 16);
 
-				labels[4] = new JLabel(((Tennis)(sf)).isAvailable() ? "+" : "-");
-				labels[4].setBounds(500, 6, 100, 16); 
+				labels[4] = new JLabel(((Tennis) (sf)).isAvailable() ? "+" : "-");
+				labels[4].setBounds(500, 6, 100, 16);
 
-				labels[5] = new JLabel(((Tennis)(sf)).lightingAvailability ? "+" : "-");
-				labels[5].setBounds(610, 6, 100, 16);  
+				labels[5] = new JLabel(((Tennis) (sf)).lightingAvailability ? "+" : "-");
+				labels[5].setBounds(610, 6, 100, 16);
 
-				labels[6] = new JLabel(((Tennis)(sf)).getSurfaceType());
-				labels[6].setBounds(710, 6, 100, 16); 
+				labels[6] = new JLabel(((Tennis) (sf)).getSurfaceType());
+				labels[6].setBounds(710, 6, 100, 16);
 
-				labels[7] = new JLabel(((Tennis)(sf)).getNetHeight() + "");
-				labels[7].setBounds(825, 6, 100, 16);  
+				labels[7] = new JLabel(((Tennis) (sf)).getNetHeight() + "");
+				labels[7].setBounds(825, 6, 100, 16);
 
-				labels[8] = new JLabel(((Tennis)(sf)).isDoublesCourt() ? "+" : "-");
-				labels[8].setBounds(950, 6, 120, 16);  
+				labels[8] = new JLabel(((Tennis) (sf)).isDoublesCourt() ? "+" : "-");
+				labels[8].setBounds(950, 6, 120, 16);
 
-				labels[9] = new JLabel(((Tennis)(sf)).isRacketAvailability() ? "+" : "-");
-				labels[9].setBounds(1060, 6, 100, 16);  
+				labels[9] = new JLabel(((Tennis) (sf)).isRacketAvailability() ? "+" : "-");
+				labels[9].setBounds(1060, 6, 100, 16);
 
-
-
-
-
-				for(int i = 0; i < 10; i++) {
-					rows[j-1].add(labels[i]);
-
+				for (int i = 0; i < 10; i++) {
+					rows[j - 1].add(labels[i]);
 
 				}
 
-
-
-				contentPane.add(rows[j-1]);
-
-
+				contentPane.add(rows[j - 1]);
 
 			}
 		}
 
-
-
-
 		revalidate();
 		repaint();
-
-
-
 
 	}
 

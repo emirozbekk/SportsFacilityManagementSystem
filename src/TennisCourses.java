@@ -72,7 +72,7 @@ public class TennisCourses extends JFrame {
 		SportsFacilitySys.init();
 
 		createTable();
-		x = 156 + 30 * tennisCount/5;
+		x = 156 + 30 * tennisCount/3;
 
 
 		JButton removeBtn = new JButton("Remove Course");
