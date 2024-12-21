@@ -31,8 +31,6 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class TennisPage extends JFrame {
 
@@ -53,7 +51,6 @@ public class TennisPage extends JFrame {
 	private boolean tableCreated = false;
 	private int x;
 	private JTextField removeInp;
-	private TennisCourses tc = new TennisCourses(this);
 
 
 
@@ -245,7 +242,13 @@ public class TennisPage extends JFrame {
 		JButton removeBtn2 = new JButton("Remove");
 		removeBtn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
+				/*
+				 * 
+				 * 
+				 * 
+				 * 
+				 * BURADAAAA
+				 */
 
 				if(!removeInp.getText().equals("")) {
 					Tennis t = (Tennis)SportsFacilitySys.searchFacilityById(Integer.parseInt(removeInp.getText()));
@@ -257,6 +260,7 @@ public class TennisPage extends JFrame {
 
 						x = 210 + 30 * tennisCount;
 
+						// Update button positions
 						addBtn.setBounds(18, x, 125, 29);
 						removeBtn.setBounds(147, x, 151, 29);
 						removePanel.setBounds(25, x + 40, 396, 117);
@@ -337,12 +341,25 @@ public class TennisPage extends JFrame {
 
 				addPanel.setVisible(false);
 				backgroundPnl.setVisible(false);
-
+				addBtn.setVisible(true);
+				removeBtn.setVisible(true);
 
 			}
 		});
 		addBtn2.setBounds(1017, 218, 117, 29);
 		addPanel.add(addBtn2);
+
+		JLabel logo = new JLabel("");
+		logo.setBounds(6, 6, 178, 80);
+		logo.setFont(new Font("Lucida Grande", Font.PLAIN, 5));
+		logo.setIcon(logoImg);
+		contentPane.add(logo);
+
+		JLabel uniName = new JLabel("Bilkent University ");
+		uniName.setBounds(95, 33, 203, 29);
+		uniName.setForeground(new Color(1, 74, 150));
+		uniName.setFont(new Font("Beirut", Font.PLAIN, 20));
+		contentPane.add(uniName);
 
 		JButton HomePage = new JButton("Home Page");
 		HomePage.setBounds(1054, 34, 117, 29);
@@ -353,6 +370,12 @@ public class TennisPage extends JFrame {
 			}
 		});
 		contentPane.add(HomePage);
+
+		JLabel lblNewLabel = new JLabel("Sport Facility Management System");
+		lblNewLabel.setBounds(94, 55, 283, 21);
+		lblNewLabel.setForeground(new Color(225, 0, 26));
+		lblNewLabel.setFont(new Font("Beirut", Font.PLAIN, 13));
+		contentPane.add(lblNewLabel);
 
 
 
@@ -400,47 +423,6 @@ public class TennisPage extends JFrame {
 		closingInp.setColumns(10);
 		closingInp.setBounds(317, 208, 46, 26);
 		addPanel.add(closingInp);
-		
-		JButton courseBtn = new JButton("Courses");
-		courseBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				tc.setVisible(true);
-				setVisible(false);
-			}
-		});
-		courseBtn.setBounds(925, 34, 117, 29);
-		contentPane.add(courseBtn);
-		
-		JPanel panel = new JPanel();
-		panel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				hp.setVisible(true);
-				setVisible(false);
-			}
-		});
-		panel.setBackground(new Color(246, 248, 250));
-		panel.setBounds(6, 6, 307, 89);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-				JLabel logo = new JLabel("");
-				logo.setBounds(0, 0, 178, 80);
-				panel.add(logo);
-				logo.setFont(new Font("Lucida Grande", Font.PLAIN, 5));
-				logo.setIcon(logoImg);
-				
-						JLabel uniName = new JLabel("Bilkent University ");
-						uniName.setBounds(87, 26, 203, 29);
-						panel.add(uniName);
-						uniName.setForeground(new Color(1, 74, 150));
-						uniName.setFont(new Font("Beirut", Font.PLAIN, 20));
-						
-								JLabel lblNewLabel = new JLabel("Sport Facility Management System");
-								lblNewLabel.setBounds(87, 49, 283, 21);
-								panel.add(lblNewLabel);
-								lblNewLabel.setForeground(new Color(225, 0, 26));
-								lblNewLabel.setFont(new Font("Beirut", Font.PLAIN, 13));
 
 
 	}

@@ -87,12 +87,12 @@ public class Basketball extends SportsFacility{
 			{
 				return false;
 			}
-			else {
-				return true;
-			}
+			
 			
 		}
-		return false;
+		
+		
+		return true;
 		
 	}
 }
