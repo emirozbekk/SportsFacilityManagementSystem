@@ -113,14 +113,14 @@ public class Tennis extends SportsFacility{
 			{
 				return false;
 			}
-			else {
-				return true;
-			}
+			
 			
 		}
-		return false;
+		
+		
+		return true;
+		
 	}
-	
 	
 
 }

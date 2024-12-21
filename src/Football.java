@@ -79,12 +79,12 @@ public class Football extends SportsFacility {
 			{
 				return false;
 			}
-			else {
-				return true;
-			}
+			
 			
 		}
-		return false;
+		
+		
+		return true;
 		
 	}
 	
