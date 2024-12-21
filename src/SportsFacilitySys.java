@@ -12,11 +12,11 @@ public class SportsFacilitySys {
 		ArrayList<Course> courses = new ArrayList<>();
 		boolean randBool = true;
 
-		t[0] = new Tennis("Hard", 91.4 , randBool, randBool, "East Campus", !randBool, 2, "10","17",!randBool,booked,randBool,975,inside,courses,rs);
-		t[1] = new Tennis("Grass", 90.4 , randBool, !randBool, "Main Campus", randBool, 2, "12","23",!randBool,booked,!randBool,342,inside,courses,rs);
-		t[2] = new Tennis("Clay", 91.7 , randBool, randBool, "Main Campus", randBool, 2, "10","19",!randBool,booked,randBool,421,inside,courses,rs);
-		t[3] = new Tennis("Grass", 101.4, randBool, !randBool, "Main Campus", !randBool, 2, "11","14",!randBool,booked,!randBool,134,inside,courses,rs);
-		t[4] = new Tennis("Hard", 87.4 , randBool, !randBool, "East Campus", !randBool, 2, "10","19",!randBool,booked,!randBool,924,inside,courses,rs);
+		t[0] = new Tennis("Hard", 91.4 , randBool, randBool, "East Campus", !randBool, 2, "10","17",!randBool,new ArrayList<String>(),randBool,975,inside,courses,new TreeSet<String>());
+		t[1] = new Tennis("Grass", 90.4 , randBool, !randBool, "Main Campus", randBool, 2, "12","23",!randBool,new ArrayList<String>(),!randBool,342,inside,courses,new TreeSet<String>());
+		t[2] = new Tennis("Clay", 91.7 , randBool, randBool, "Main Campus", randBool, 2, "10","19",!randBool,new ArrayList<String>(),randBool,421,inside,courses,new TreeSet<String>());
+		t[3] = new Tennis("Grass", 101.4, randBool, !randBool, "Main Campus", !randBool, 2, "11","14",!randBool,new ArrayList<String>(),!randBool,134,inside,courses,new TreeSet<String>());
+		t[4] = new Tennis("Hard", 87.4 , randBool, !randBool, "East Campus", !randBool, 2, "10","19",!randBool,new ArrayList<String>(),!randBool,924,inside,courses,new TreeSet<String>());
 
 		sportsFacilities.add(t[0]);
 		sportsFacilities.add(t[1]);
@@ -175,7 +175,7 @@ public class SportsFacilitySys {
 				
 				sf.getBookedBy().add(s);
 				
-				sf.getReservationsSet().add(s);
+				sf.reservationsSet.add(s);
 				
 				return true;
 			}
@@ -186,6 +186,7 @@ public class SportsFacilitySys {
 		return false;
 		
 	}
+	
 	
 	public static void calculateCourseFee(Course course) {
 		//base price
@@ -228,19 +229,19 @@ public class SportsFacilitySys {
     }
 
 
-    public static String displaySchedule() {
-        String reservations ="";
+	 public static String displaySchedule() {
+	        String reservations ="";
 
 
-        SportsFacility sf = SportsFacilitySys.getSportsFacilities().get(0);
-        
-        for(String s : sf.getReservationsSet()) {
-        	reservations += s;
-        }
-        	
-        	
-        return reservations;
-    }
+	        for(SportsFacility sf : sportsFacilities) {
+	        	for(String s : sf.getReservationsSet()) {
+	        		reservations += s;
+	        	}
+	        }
+	        	
+	        	
+	        return reservations;
+	    }
 
 	
 

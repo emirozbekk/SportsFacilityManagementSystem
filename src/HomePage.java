@@ -102,7 +102,7 @@ public class HomePage extends JFrame {
 		contentPane.add(backgroundPhoto);
 		
 		JPanel footballPnl = new JPanel();
-		footballPnl.setBounds(49, 570, 219, 172);
+		footballPnl.setBounds(49, 570, 219, 136);
 		contentPane.add(footballPnl);
 		footballPnl.setLayout(null);
 		
@@ -126,13 +126,9 @@ public class HomePage extends JFrame {
 		FootballMainBtn.setBounds(0, 91, 213, 29);
 		footballPnl.add(FootballMainBtn);
 		
-		JButton footballAdd = new JButton("Add Facility");
-		footballAdd.setBounds(0, 132, 213, 29);
-		footballPnl.add(footballAdd);
-		
 		JPanel basketballPnl = new JPanel();
 		basketballPnl.setLayout(null);
-		basketballPnl.setBounds(338, 570, 219, 172);
+		basketballPnl.setBounds(338, 570, 219, 136);
 		contentPane.add(basketballPnl);
 		
 		JLabel basketballIcon = new JLabel("");
@@ -154,17 +150,9 @@ public class HomePage extends JFrame {
 		BasketballMainBtn.setBounds(0, 91, 213, 29);
 		basketballPnl.add(BasketballMainBtn);
 		
-		JButton basketballAdd = new JButton("Add Facility");
-		basketballAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		basketballAdd.setBounds(0, 132, 213, 29);
-		basketballPnl.add(basketballAdd);
-		
 		JPanel tennisPnl = new JPanel();
 		tennisPnl.setLayout(null);
-		tennisPnl.setBounds(630, 570, 219, 172);
+		tennisPnl.setBounds(630, 570, 219, 136);
 		contentPane.add(tennisPnl);
 		
 		JLabel tennisIcon = new JLabel("");
@@ -193,13 +181,9 @@ public class HomePage extends JFrame {
 		tennisMainBtn.setBounds(0, 91, 213, 29);
 		tennisPnl.add(tennisMainBtn);
 		
-		JButton tennisAdd = new JButton("Add Facility");
-		tennisAdd.setBounds(0, 132, 213, 29);
-		tennisPnl.add(tennisAdd);
-		
 		JPanel squashPnl = new JPanel();
 		squashPnl.setLayout(null);
-		squashPnl.setBounds(925, 570, 219, 172);
+		squashPnl.setBounds(925, 570, 219, 136);
 		contentPane.add(squashPnl);
 		
 		JLabel squashIcon = new JLabel("");
@@ -220,10 +204,6 @@ public class HomePage extends JFrame {
 		JButton squashMainBtn = new JButton("Squash Page");
 		squashMainBtn.setBounds(0, 91, 213, 29);
 		squashPnl.add(squashMainBtn);
-		
-		JButton squashAdd = new JButton("Add Facility");
-		squashAdd.setBounds(0, 133, 213, 29);
-		squashPnl.add(squashAdd);
 		
 
 		

@@ -56,6 +56,10 @@ public class TennisPage extends JFrame {
 	private JTextField nameInpRes;
 	private JTextField stuIdInpRes;
 	private JTextField timeInpRes;
+	private JTextField idRemInp;
+	private JTextField nameRemInp;
+	private JTextField stuIdRemInp;
+	private JTextField timeRemInp;
 
 
 
@@ -268,14 +272,13 @@ public class TennisPage extends JFrame {
 		addBtnRes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!idInpRes.getText().equals("") || !nameInpRes.getText().equals("") || !stuIdInpRes.getText().equals("") || !timeInpRes.getText().equals("") ) {
-					if(SportsFacilitySys.reserveFacility(Integer.parseInt(idInpRes.getText()), nameInpRes.getText(),nameInpRes.getText() , timeInpRes.getText())) {
+					if(SportsFacilitySys.reserveFacility(Integer.parseInt(idInpRes.getText()), nameInpRes.getText(), stuIdInpRes.getText() , timeInpRes.getText())) {
 						taRes.setText("Reservation is succesfull");
 						System.out.println(SportsFacilitySys.displaySchedule());
 
 					}
 					else {
 						taRes.setText("Reservation unsuccesfull ");
-						System.out.println(SportsFacilitySys.reserveFacility(Integer.parseInt(idInpRes.getText()), nameInpRes.getText(),nameInpRes.getText() , timeInpRes.getText()));
 					}
 				}
 				else {
@@ -338,12 +341,25 @@ public class TennisPage extends JFrame {
 		});
 		contentPane.add(addReservationBtn);
 
+		JPanel removeResPnl = new JPanel();
+		//addResPanel.setBounds(22, x+40, 436, 250);
+		removeResPnl.setBounds(6, 500, 436, 250);
+		removeResPnl.setVisible(false);
+		contentPane.add(removeResPnl);
+		removeResPnl.setLayout(null);
 
 		JButton removeReservationBtn = new JButton("Remove Reservation");
 		removeReservationBtn.setForeground(new Color(255, 147, 0));
 		removeReservationBtn.setBackground(new Color(248, 250, 252));
 		removeReservationBtn.setBounds(450, x, 151, 29);
+		removeReservationBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				removeResPnl.setVisible(true);
+			}
+		});
 		contentPane.add(removeReservationBtn);
+		
+		
 
 
 		JButton removeBtn2 = new JButton("Remove");
@@ -367,6 +383,8 @@ public class TennisPage extends JFrame {
 						addResPanel.setBounds(22, x+40, 419, 250);
 						addReservationBtn.setBounds(297, x, 151, 29);
 						removeReservationBtn.setBounds(450, x, 151, 29);
+						removeResPnl.setBounds(6, 500, 436, 250);
+
 
 
 
@@ -436,6 +454,8 @@ public class TennisPage extends JFrame {
 					addResPanel.setBounds(22, x+40, 419, 250);
 					addReservationBtn.setBounds(297, x, 151, 29);
 					removeReservationBtn.setBounds(450, x, 151, 29);
+					removeResPnl.setBounds(6, 500, 436, 250);
+
 
 
 
@@ -544,6 +564,75 @@ public class TennisPage extends JFrame {
 		});
 		courseBtn.setBounds(935, 34, 117, 29);
 		contentPane.add(courseBtn);
+		
+		
+		
+		JButton closeRemResBtn = new JButton("X");
+		closeRemResBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		closeRemResBtn.setBounds(6, 6, 52, 29);
+		removeResPnl.add(closeRemResBtn);
+		
+		JLabel idLblRes_1 = new JLabel("Enter Facility Id to Reserve : ");
+		idLblRes_1.setBounds(57, 47, 178, 16);
+		removeResPnl.add(idLblRes_1);
+		
+		idRemInp = new JTextField();
+		idRemInp.setColumns(10);
+		idRemInp.setBounds(247, 42, 130, 26);
+		removeResPnl.add(idRemInp);
+		
+		JLabel nameLblRes_1 = new JLabel("Enter Your Name : ");
+		nameLblRes_1.setBounds(118, 75, 117, 16);
+		removeResPnl.add(nameLblRes_1);
+		
+		nameRemInp = new JTextField();
+		nameRemInp.setColumns(10);
+		nameRemInp.setBounds(247, 70, 130, 26);
+		removeResPnl.add(nameRemInp);
+		
+		JLabel stuIdLblRes_1 = new JLabel("Enter Your Id : ");
+		stuIdLblRes_1.setBounds(142, 103, 93, 16);
+		removeResPnl.add(stuIdLblRes_1);
+		
+		stuIdRemInp = new JTextField();
+		stuIdRemInp.setColumns(10);
+		stuIdRemInp.setBounds(247, 98, 130, 26);
+		removeResPnl.add(stuIdRemInp);
+		
+		JLabel timeLblRes_1 = new JLabel("Enter Time : ");
+		timeLblRes_1.setBounds(152, 137, 83, 16);
+		removeResPnl.add(timeLblRes_1);
+		
+		timeRemInp = new JTextField();
+		timeRemInp.setColumns(10);
+		timeRemInp.setBounds(247, 132, 130, 26);
+		removeResPnl.add(timeRemInp);
+		
+
+		JTextArea taRem = new JTextArea();
+		taRem.setBackground(new Color(237, 238, 238));
+		taRem.setBounds(30, 193, 205, 24);
+		removeResPnl.add(taRem);
+		
+		JButton addBtnRem = new JButton("Reserve");
+		addBtnRem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(!idInpRes.getText().equals("") || !nameInpRes.getText().equals("") || !stuIdInpRes.getText().equals("") || !timeInpRes.getText().equals("") ) {
+					taRem.setText(SportsFacilitySys.deleteReservation(timeRemInp.getText(), Integer.parseInt(idRemInp.getText()), nameRemInp.getText(), stuIdRemInp.getText()));
+
+				}
+					
+				
+				
+			}
+		});
+		addBtnRem.setBounds(260, 188, 117, 29);
+		removeResPnl.add(addBtnRem);
+		
 
 
 
