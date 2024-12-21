@@ -68,6 +68,12 @@ public class HomePage extends JFrame {
 		contentPane.add(footballBtn);
 		
 		JButton basketabllBtn = new JButton("Basketball");
+		basketabllBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BasketballPage frame = new BasketballPage();
+				frame.setVisible(true);
+			}
+		});
 		basketabllBtn.setBounds(796, 34, 117, 29);
 		contentPane.add(basketabllBtn);
 		
@@ -147,6 +153,12 @@ public class HomePage extends JFrame {
 		basketballPnl.add(basketballFacCount);
 		
 		JButton BasketballMainBtn = new JButton("Basketball Page");
+		BasketballMainBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BasketballPage frame = new BasketballPage();
+				frame.setVisible(true);
+			}
+		});
 		BasketballMainBtn.setBounds(0, 91, 213, 29);
 		basketballPnl.add(BasketballMainBtn);
 		

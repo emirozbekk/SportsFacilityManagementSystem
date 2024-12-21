@@ -76,6 +76,8 @@ public class TennisPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		
+		
 		JPanel backgroundPnl = new JPanel();
 		backgroundPnl.setBackground(new Color(248, 250, 252));
 		backgroundPnl.setForeground(new Color(248, 250, 252));
@@ -83,6 +85,8 @@ public class TennisPage extends JFrame {
 		contentPane.add(backgroundPnl);
 		backgroundPnl.setLayout(null);
 
+		
+		//Add Panel
 		JPanel addPanel = new JPanel();
 		addPanel.setBounds(18, 117, 1140, 265);
 		contentPane.add(addPanel);
@@ -175,12 +179,36 @@ public class TennisPage extends JFrame {
 		addPanel.add(availableCheck);
 
 		// delete this when everything finishes
-		SportsFacilitySys.init();
-
+	
+		
 		createTable();
+		
+		x = 210 + 30 * tennisCount;
+
+		//Reservation Panel
+		JPanel addResPanel = new JPanel();
+		addResPanel.setBounds(22, x + 40, 419, 250);
+		// addResPanel.setBounds(6, 500, 419, 250);
+		addResPanel.setVisible(false);
+
+		
+		//Remove Panel
+		JPanel removePanel = new JPanel();
+		removePanel.setBackground(new Color(238, 238, 238));
+		removePanel.setBounds(25, x + 40, 396, 117);
+		removePanel.setVisible(false);
+		contentPane.add(removePanel);
 
 		JButton removeBtn = new JButton("Remove Facility");
 		removeBtn.setForeground(new Color(255, 38, 0));
+		
+		
+		JPanel removeResPnl = new JPanel();
+		removeResPnl.setBounds(22, x + 40, 436, 250);
+		// removeResPnl.setBounds(6, 500, 436, 250);
+		removeResPnl.setVisible(false);
+		contentPane.add(removeResPnl);
+		removeResPnl.setLayout(null);
 
 		JButton addBtn = new JButton("Add Facility");
 		addBtn.setForeground(new Color(0, 142, 0));
@@ -190,17 +218,15 @@ public class TennisPage extends JFrame {
 				backgroundPnl.setVisible(true);
 				addBtn.setVisible(false);
 				removeBtn.setVisible(false);
+				addResPanel.setVisible(false);
+				removePanel.setVisible(false);
+				removeResPnl.setVisible(false);
+				
 
 			}
 		});
 
-		x = 210 + 30 * tennisCount;
-
-		JPanel addResPanel = new JPanel();
-		addResPanel.setBounds(22, x + 40, 419, 250);
-		// addResPanel.setBounds(6, 500, 419, 250);
-		addResPanel.setVisible(false);
-
+		
 		contentPane.add(addResPanel);
 		addResPanel.setLayout(null);
 
@@ -208,6 +234,7 @@ public class TennisPage extends JFrame {
 		closeAddResBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addResPanel.setVisible(false);
+				
 			}
 		});
 		closeAddResBtn.setBounds(6, 6, 52, 29);
@@ -277,12 +304,8 @@ public class TennisPage extends JFrame {
 
 		addBtn.setBounds(18, x, 125, 29);
 		contentPane.add(addBtn);
-
-		JPanel removePanel = new JPanel();
-		removePanel.setBackground(new Color(238, 238, 238));
-		removePanel.setBounds(25, x + 40, 396, 117);
-		removePanel.setVisible(false);
-		contentPane.add(removePanel);
+		
+	
 
 		removePanel.setLayout(null);
 
@@ -304,6 +327,8 @@ public class TennisPage extends JFrame {
 		removeBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				removePanel.setVisible(true);
+				removeResPnl.setVisible(false);
+				addResPanel.setVisible(false);
 
 			}
 		});
@@ -316,16 +341,13 @@ public class TennisPage extends JFrame {
 		addReservationBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addResPanel.setVisible(true);
+				removePanel.setVisible(false);
+				removeResPnl.setVisible(false);
 			}
 		});
 		contentPane.add(addReservationBtn);
 
-		JPanel removeResPnl = new JPanel();
-		removeResPnl.setBounds(22, x + 40, 436, 250);
-		// removeResPnl.setBounds(6, 500, 436, 250);
-		removeResPnl.setVisible(false);
-		contentPane.add(removeResPnl);
-		removeResPnl.setLayout(null);
+		
 
 		JButton removeReservationBtn = new JButton("Remove Reservation");
 		removeReservationBtn.setForeground(new Color(255, 147, 0));
@@ -334,6 +356,8 @@ public class TennisPage extends JFrame {
 		removeReservationBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				removeResPnl.setVisible(true);
+				addResPanel.setVisible(false);
+				removePanel.setVisible(false);
 			}
 		});
 		contentPane.add(removeReservationBtn);
@@ -380,11 +404,7 @@ public class TennisPage extends JFrame {
 						removeReservationBtn.setBounds(450, x, 151, 29);
 						removeResPnl.setBounds(22, x + 40, 436, 250);
 						addResPanel.setBounds(22, x + 40, 419, 250);
-						dispBtn.setBounds(26, x+300, 164, 29);
-						scrollPane.setBounds(22, x+100, 1140, 150);
-
-
-
+			
 						
 					} else {
 						textArea.setText("Facility does not exists");
@@ -422,15 +442,6 @@ public class TennisPage extends JFrame {
 				ArrayList<Course> courses = new ArrayList<>();
 				TreeSet<String> rs = new TreeSet<>();
 
-				/*
-				 * t[0] = new Tennis("Hard", 91.4 , randBool, randBool, "East Campus",
-				 * !randBool, 2, "10","17",!randBool,booked,randBool,975,inside,courses,rs);
-				 * Tennis(surface, netHeight, doubles, racket, location, indoor, capacity,
-				 * opening, closing, availability, booked, lighting id, inside, courses, rs);
-				 * 
-				 * 
-				 */
-
 				if (!surfaceInp.getText().equals("") || !heightInp.getText().equals("")
 						|| !locationInp.getText().equals("") || !capacityInp.getText().equals("")
 						|| !openingInp.getText().equals("") || !closingInp.getText().equals("")
@@ -454,11 +465,8 @@ public class TennisPage extends JFrame {
 					addReservationBtn.setBounds(297, x, 151, 29);
 					removeReservationBtn.setBounds(450, x, 151, 29);
 					removeResPnl.setBounds(22, x + 40, 436, 250);
-					scrollPane.setBounds(22, x+100, 1140, 150);
-					dispBtn.setBounds(26, x+300, 164, 29);
-
-				
-
+					
+					
 				}
 
 				try {
@@ -472,6 +480,9 @@ public class TennisPage extends JFrame {
 				backgroundPnl.setVisible(false);
 				addBtn.setVisible(true);
 				removeBtn.setVisible(true);
+				removeResPnl.setVisible(false);
+				addResPanel.setVisible(false);
+				removePanel.setVisible(false);
 
 			}
 		});
@@ -605,7 +616,7 @@ public class TennisPage extends JFrame {
 		taRem.setBounds(30, 193, 205, 24);
 		removeResPnl.add(taRem);
 
-		JButton addBtnRem = new JButton("Reserve");
+		JButton addBtnRem = new JButton("Remove");
 		addBtnRem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 

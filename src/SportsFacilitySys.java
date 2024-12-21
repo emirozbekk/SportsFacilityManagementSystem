@@ -11,14 +11,46 @@ public class SportsFacilitySys {
 		TreeSet<String> rs = new TreeSet<>();
 		ArrayList<Course> courses = new ArrayList<>();
 		boolean randBool = true;
+		Basketball[] b = new Basketball[5];
+		
+		b[0] = new Basketball("East Campus",randBool,10,"10","17",!randBool,new ArrayList<>(),!randBool,123,inside,new ArrayList<>(),new TreeSet<>(),"Hardwood",3.05,5,randBool);
+		b[1] = new Basketball("East Campus",!randBool,10,"10","17",randBool,new ArrayList<>(),randBool,145,inside,new ArrayList<>(),new TreeSet<>(),"Concrete",3.05,5,randBool);
+		b[2] = new Basketball("Main Campus",randBool,10,"9","17",!randBool,new ArrayList<>(),randBool,167,inside,new ArrayList<>(),new TreeSet<>(),"Rubber",3.05,5,randBool);
+		b[3] = new Basketball("Main Campus",!randBool,10,"9","17",randBool,new ArrayList<>(),!randBool,189,inside,new ArrayList<>(),new TreeSet<>(),"Asphalt",2.74,5,randBool);
+		b[4] = new Basketball("Main Campus",randBool,10,"9","17",!randBool,new ArrayList<>(),randBool,212,inside,new ArrayList<>(),new TreeSet<>(),"Hardwood",3.05,5,randBool);
+		
+		sportsFacilities.add(b[0]);
+		sportsFacilities.add(b[1]);
+		sportsFacilities.add(b[2]);
+		sportsFacilities.add(b[3]);
+		sportsFacilities.add(b[4]);
+		
+		Course c2 = new Course("Basketball","20",0);
+		calculateCourseFee(c2);
+		b[0].courses.add(c2);
+		b[1].courses.add(c2);
+		b[2].courses.add(c2);
+		b[3].courses.add(c2);
+		b[4].courses.add(c2);
+		
+		
+		
 
 		t[0] = new Tennis("Hard", 91.4 , randBool, randBool, "East Campus", !randBool, 2, "10","17",!randBool,new ArrayList<String>(),randBool,975,inside,courses,new TreeSet<String>());
 		t[1] = new Tennis("Grass", 90.4 , randBool, !randBool, "Main Campus", randBool, 2, "12","23",!randBool,new ArrayList<String>(),!randBool,342,inside,courses,new TreeSet<String>());
 		t[2] = new Tennis("Clay", 91.7 , randBool, randBool, "Main Campus", randBool, 2, "10","19",!randBool,new ArrayList<String>(),randBool,421,inside,courses,new TreeSet<String>());
 		
+		
+		
 		sportsFacilities.add(t[0]);
 		sportsFacilities.add(t[1]);
 		sportsFacilities.add(t[2]);
+		
+		
+		
+		
+
+		
 		
 
 		t[1].courses.add(new Course("Begginer Course", "5", 2501));
