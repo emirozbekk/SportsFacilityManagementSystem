@@ -51,6 +51,7 @@ public class TennisPage extends JFrame {
 	private boolean tableCreated = false;
 	private int x;
 	private JTextField removeInp;
+	TennisCourses tc;
 
 
 
@@ -78,7 +79,6 @@ public class TennisPage extends JFrame {
 		backgroundPnl.setBounds(18, 380, 1140, 386);
 		contentPane.add(backgroundPnl);
 		backgroundPnl.setLayout(null);
-
 
 
 
@@ -423,6 +423,17 @@ public class TennisPage extends JFrame {
 		closingInp.setColumns(10);
 		closingInp.setBounds(317, 208, 46, 26);
 		addPanel.add(closingInp);
+		
+		JButton courseBtn = new JButton("Courses");
+		courseBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				showTennisCoursesPage();
+			}
+		});
+		courseBtn.setBounds(935, 34, 117, 29);
+		contentPane.add(courseBtn);
+		
+		
 
 
 	}
@@ -436,7 +447,7 @@ public class TennisPage extends JFrame {
 
 	public void createTable() {
 		System.out.println("inside");
-		HashSet<Integer> hs = new HashSet<>();
+		HashSet<Tennis> hs = new HashSet<>();
 
 
 		boolean flag = true;
@@ -447,6 +458,7 @@ public class TennisPage extends JFrame {
 			if(sf instanceof Tennis) {
 				flag = false;
 				tennisCount++;
+				hs.add((Tennis)sf);
 			}
 		}
 
@@ -586,8 +598,8 @@ public class TennisPage extends JFrame {
 
 			
 
-			for(Object sf : SportsFacilitySys.getSportsFacilities()) {
-				if(sf instanceof Tennis) {
+			for(Tennis sf : hs) {
+				
 					rows[j++] = new JPanel();
 					rows[j-1].setBounds(18, 156+ 30 * j, 1140, 30);
 					rows[j-1].setLayout(null);
@@ -642,11 +654,21 @@ public class TennisPage extends JFrame {
 			}
 
 
-		}
+		
 
 		revalidate();
 		repaint();
+		
+		
 
 
+	}
+	
+	private void showTennisCoursesPage() {
+	    if (tc == null) {
+	        tc = new TennisCourses(this);
+	    }
+	    tc.setVisible(true);
+	    this.setVisible(false);
 	}
 }

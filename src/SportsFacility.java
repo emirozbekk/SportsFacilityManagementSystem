@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.TreeSet;
 
 public abstract class SportsFacility implements FacilityInterface{
@@ -19,6 +20,23 @@ public abstract class SportsFacility implements FacilityInterface{
 	
 	public TreeSet<String> getReservationsSet() {
 		return reservationsSet;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(facilityId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SportsFacility other = (SportsFacility) obj;
+		return facilityId == other.facilityId;
 	}
 
 	public void setReservationsSet(TreeSet<String> reservationsSet) {

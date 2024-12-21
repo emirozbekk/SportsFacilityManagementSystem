@@ -72,7 +72,7 @@ public class TennisCourses extends JFrame {
 		SportsFacilitySys.init();
 
 		createTable();
-		x = 156 + 30 * tennisCount/3;
+		x = 156 + 30 * tennisCount/5;
 
 
 		JButton removeBtn = new JButton("Remove Course");
@@ -223,12 +223,12 @@ public class TennisCourses extends JFrame {
 						Course c = SportsFacilitySys.searchCourseByName(cnameRemove.getText());
 						t.courses.remove(c);
 						textArea.setText("Facility removed succesfully");
-						tennisCount--;
+						tennisCount-=2;
 
 						x = 156 + 30 * tennisCount/3;
 						
-						addBtn.setBounds(18, x, 125, 29);
-						removeBtn.setBounds(147, x, 151, 29);
+						addBtn.setBounds(18, x-60, 125, 29);
+						removeBtn.setBounds(147, x-60, 151, 29);
 						removePanel.setBounds(25, x+40 , 396, 175);
 					}
 					else {
