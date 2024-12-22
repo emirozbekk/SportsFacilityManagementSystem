@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -32,6 +33,8 @@ public class HomePage extends JFrame {
 	private ImageIcon tennisImg = new ImageIcon(getClass().getResource("/images/tennis.png"));
 	private ImageIcon squashImg = new ImageIcon(getClass().getResource("/images/squash.png"));
 	private TennisPage tennisFrame = new TennisPage(this);
+	private SquashPage squashFrame = new SquashPage(this);
+
 
 
 	/**
@@ -91,6 +94,8 @@ public class HomePage extends JFrame {
 		JButton squashBtn = new JButton("Squash");
 		squashBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				squashFrame.setVisible(true);
+				setVisible(false);
 			}
 		});
 		squashBtn.setBounds(1054, 34, 117, 29);
@@ -214,6 +219,12 @@ public class HomePage extends JFrame {
 		squashPnl.add(squashFacCount);
 		
 		JButton squashMainBtn = new JButton("Squash Page");
+		squashMainBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				squashFrame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		squashMainBtn.setBounds(0, 91, 213, 29);
 		squashPnl.add(squashMainBtn);
 		
