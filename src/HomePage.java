@@ -33,8 +33,8 @@ public class HomePage extends JFrame {
 	private ImageIcon tennisImg = new ImageIcon(getClass().getResource("/images/tennis.png"));
 	private ImageIcon squashImg = new ImageIcon(getClass().getResource("/images/squash.png"));
 	private TennisPage tennisFrame = new TennisPage(this);
-	private SquashPage squashFrame = new SquashPage(this);
-
+	private SquashPage squashFrame = new SquashPage(this);	
+	private FootballPage footballFrame = new FootballPage(this);
 
 
 	/**
@@ -65,6 +65,8 @@ public class HomePage extends JFrame {
 		JButton footballBtn = new JButton("Football");
 		footballBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				footballFrame.setVisible(true);
+				setVisible(false);
 			}
 		});
 		footballBtn.setBounds(667, 34, 117, 29);
@@ -134,6 +136,12 @@ public class HomePage extends JFrame {
 		footballPnl.add(footballFacCount);
 		
 		JButton FootballMainBtn = new JButton("Football Page");
+		FootballMainBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				footballFrame.setVisible(true);
+				setVisible(false);
+			}
+		});
 		FootballMainBtn.setBounds(0, 91, 213, 29);
 		footballPnl.add(FootballMainBtn);
 		

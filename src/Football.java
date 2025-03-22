@@ -3,9 +3,8 @@ import java.util.TreeSet;
 
 public class Football extends SportsFacility {
 	
-	private String teamAName;
-	private String teamBName;
-	private int shirts;
+	private String pitchSize;
+	private int teamSize;
 	
 	public Football() {
 		
@@ -18,43 +17,31 @@ public class Football extends SportsFacility {
 	public Football(String location, boolean isIndoor, int capacity, String openingHour, String closingHour,
 			boolean isAvailable, ArrayList<String> bookedBy, boolean lightingAvailability, int facilityId,
 			ArrayList<String> studentsInside, ArrayList<Course> courses, TreeSet<String> reservationsSet,
-			String teamAName, String teamBName, int shirts) {
+			String pitchSize, int teamSize) {
 		super(location, isIndoor, capacity, openingHour, closingHour, isAvailable, bookedBy, lightingAvailability,
 				facilityId, studentsInside, courses, reservationsSet);
-		this.teamAName = teamAName;
-		this.teamBName = teamBName;
-		this.shirts = shirts;
+		this.pitchSize = pitchSize;
+		this.teamSize = teamSize;
 	}
 
 
 
-
-
-
-	public String getTeamAName() {
-		return teamAName;
+	public String getPitchSize() {
+		return pitchSize;
 	}
 
-	public void setTeamAName(String teamAName) {
-		this.teamAName = teamAName;
+
+
+	public int getTeamSize() {
+		return teamSize;
 	}
 
-	public String getTeamBName() {
-		return teamBName;
-	}
 
-	public void setTeamBName(String teamBName) {
-		this.teamBName = teamBName;
-	}
-
-	public int getShirts() {
-		return shirts;
-	}
 
 	public String toString() {
 		return super.toString()
-				+ "\nTeam A : " + teamAName
-				+ "\nTeam B: " + teamBName;
+				+ "  Team Size : " + teamSize
+				+ "  Pitch Size " + pitchSize;
 				
 	}
 	

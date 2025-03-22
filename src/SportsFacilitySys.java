@@ -49,7 +49,13 @@ public class SportsFacilitySys {
 		
 		
 		
-
+		Football[] f = new Football[2];
+		
+		f[0] = new Football("Main Campus", !randBool, 14 , "10.00" , "23.00" , randBool, new ArrayList<>(), randBool, 310 , inside , new ArrayList<>() ,  new TreeSet<>() , "Half Pitch" , 7 );
+		f[1] = new Football("East Campus", !randBool, 20 , "10.00" , "23.00" , randBool, new ArrayList<>(), randBool, 410 , inside , new ArrayList<>() ,  new TreeSet<>() , "Full Pitch" , 10);	
+				
+		sportsFacilities.add(f[0]);
+		sportsFacilities.add(f[1]);
 		
 		
 
@@ -118,10 +124,13 @@ public class SportsFacilitySys {
 		if(facility!=null) {
 			if(!facility.bookFacility(time)) {
 				listStr = name +"*" +stuid +"*" +time;
-				facility.getBookedBy().remove(listStr);
+				if(facility.getBookedBy().remove(listStr)) {
 				rSetStr="Facility is booked at " + time + " by " + name + "(" + stuid + ")\n";
 				facility.getReservationsSet().remove(rSetStr);
-				result+="Removed reservation: Student name with the id: " + name +" " + stuid + "\nTime: " + time;
+				result+="Removed reservation: Student name with the id: " + name +" " + stuid + "\nTime: " + time;}
+				else {
+					result+="No reservation with the given information";
+				}
 			}
 
 			else {
